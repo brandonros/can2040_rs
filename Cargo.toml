@@ -13,3 +13,33 @@ debug = 2
 [profile.dev]
 lto = true
 opt-level = "z"
+
+[dev-dependencies]
+# embassy
+embassy-futures = "0.1.1"
+embassy-sync = "0.6.2"
+embassy-executor = { version = "*", features = ["task-arena-size-98304", "arch-cortex-m", "executor-thread", "executor-interrupt", "defmt"] }
+embassy-time = { version = "*", features = ["defmt", "defmt-timestamp-uptime"] }
+# platform
+embassy-rp = { version = "*", features = ["defmt", "unstable-pac", "time-driver", "critical-section-impl", "rp235xa", "binary-info"] }
+cortex-m-rt = "0.7.0"
+cyw43 = { version = "*", features = ["defmt", "firmware-logs", "bluetooth"] }
+cyw43-pio = { version = "*", features = ["defmt"] }
+# bluetooth
+bt-hci = { version = "*", features = ["embassy-time", "uuid", "defmt"] }
+trouble-host = { version = "*", features = ["defmt"] }
+# logging
+defmt = "0.3"
+panic-probe = { version = "0.3", features = ["print-defmt"] }
+defmt-serial = "0.10.0"
+# static
+static_cell = "2.1"
+
+[patch.crates-io]
+embassy-rp = { git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6" }
+embassy-time = { git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6" }
+embassy-executor = { git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6" }
+cyw43 = { git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6" }
+cyw43-pio = { git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6" }
+bt-hci = { git = "https://github.com/embassy-rs/bt-hci", rev = "21ba1ce" }
+trouble-host = { git = "https://github.com/embassy-rs/trouble", rev = "b6694cf" }
