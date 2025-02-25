@@ -1,2 +1,2 @@
-# can2040-rs
+# can2040_rs
 Rust bindings to can2040

@@ -1,6 +1,6 @@
 [package]
 edition = "2021"
-name = "can2040-rs"
+name = "can2040_rs"
 version = "0.1.0"
 license = "MIT OR Apache-2.0"
 
