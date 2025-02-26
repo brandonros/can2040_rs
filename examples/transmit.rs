@@ -116,6 +116,7 @@ async fn main(spawner: Spawner) {
     can.set_callback(Some(can_callback));
 
     // Start CAN with 500kbit/s bitrate, using GPIO 10 (RX) and 11 (TX)
+    // Works with standard CAN bus transceivers. On the rp2350, any two gpio pins from GPIO0 to GPIO31 or any two pins from GPIO16 to GPIO47 may be used.
     can.start(125_000_000, 500_000, 10, 11);
 
     // Example: Send a CAN message every second
@@ -123,10 +124,7 @@ async fn main(spawner: Spawner) {
         let mut msg = can2040_rs::can2040_msg::default();
         msg.id = 0x7e0; // Standard ID
         msg.dlc = 8; // 8 bytes of data
-                     // Set data using the union
-        unsafe {
-            msg.__bindgen_anon_1.data = [0x02, 0x3e, 0x00, 0x55, 0x55, 0x55, 0x55, 0x55];
-        }
+        msg.__bindgen_anon_1.data = [0x02, 0x3e, 0x00, 0x55, 0x55, 0x55, 0x55, 0x55];
 
         if can.check_transmit() > 0 {
             match can.transmit(&msg) {
