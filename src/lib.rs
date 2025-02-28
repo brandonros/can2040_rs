@@ -36,9 +36,8 @@ impl Can2040 {
         unsafe { can2040_check_transmit(&mut self.inner) }
     }
 
-    pub fn transmit(&mut self, msg: &can2040_msg) -> Result<(), i32> {
-        let mut msg_copy = *msg; // Create a mutable copy
-        let result = unsafe { can2040_transmit(&mut self.inner, &mut msg_copy) };
+    pub fn transmit(&mut self, msg: &mut can2040_msg) -> Result<(), i32> {
+        let result = unsafe { can2040_transmit(&mut self.inner, msg) };
         if result == 0 {
             Ok(())
         } else {
