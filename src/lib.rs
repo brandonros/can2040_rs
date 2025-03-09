@@ -68,16 +68,6 @@ impl Can2040 {
         }
     }
 
-    /// Helper method to create an extended frame format (EFF) ID
-    pub fn make_eff_id(id: u32) -> u32 {
-        id | CAN2040_ID_EFF as u32
-    }
-
-    /// Helper method to create a remote transmission request (RTR) ID
-    pub fn make_rtr_id(id: u32) -> u32 {
-        id | CAN2040_ID_RTR as u32
-    }
-
     /// Setup the CAN peripheral
     pub fn setup(&mut self) {
         unsafe {
